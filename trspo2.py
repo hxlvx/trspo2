@@ -74,12 +74,28 @@ def collatz_worker(input_queue, output_queue):
 
 
 # Розрахунок кількості кроків для числа
-def calculate_collatz_steps(value):
-    step_count = 0
-    while value != 1:
-        value = value // 2 if value % 2 == 0 else 3 * value + 1
-        step_count += 1
-    return step_count
+def calculate_collatz_steps(number):
+    """
+    Calculate the number of steps to reach 1
+    based on the Collatz conjecture.
+
+    Parameters:
+    - number (int): Starting value of the Collatz sequence. Must be a positive integer.
+
+    Returns:
+    - steps (int): Total steps to reach 1.
+
+    Raises:
+    - ValueError: If the input is not a positive integer.
+    """
+    if not isinstance(number, int) or number <= 0:
+        raise ValueError("Input must be a positive integer.")
+
+    steps = 0
+    while number != 1:
+        number = number // 2 if number % 2 == 0 else 3 * number + 1
+        steps += 1
+    return steps
 
 
 if __name__ == "__main__":
